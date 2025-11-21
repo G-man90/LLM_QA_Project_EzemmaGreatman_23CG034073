@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LLM Q&A Project</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Minimal inline styling in case static file missing */
+    body { font-family: Arial, sans-serif; margin: 2rem; max-width: 900px; }
+    .container { display:block; }
+    textarea { width:100%; height:100px; padding:8px; font-size:16px; }
+    .box { border:1px solid #ddd; padding:1rem; margin-top:1rem; border-radius:6px; }
+    .label { font-weight:600; margin-top:0.5rem; }
+    button { padding:10px 16px; margin-top:8px; }
+    pre { white-space:pre-wrap; word-break:break-word; }
+  </style>
+</head>
+<body>
+  <h1>LLM Q&A — Project</h1>
+  <form method="post">
+    <label for="question">Enter your question</label><br>
+    <textarea id="question" name="question" placeholder="Type any natural question...">{{ question or '' }}</textarea><br>
+    <button type="submit">Ask LLM</button>
+  </form>
+
+  {% if processed %}
+  <div class="box">
+    <div class="label">Processed question:</div>
+    <pre>{{ processed }}</pre>
+
+    <div class="label">Tokens (sample):</div>
+    <pre>{{ tokens }}</pre>
+
+    <div class="label">LLM Answer:</div>
+    <pre>{{ answer }}</pre>
+
+    <div class="label">LLM response metadata (short):</div>
+    <pre>{{ raw }}</pre>
+  </div>
+  {% endif %}
+</body>
+</html>
